@@ -1,6 +1,31 @@
-priority_harm: REPLACE
-primary_metric: REPLACE
-tolerance: REPLACE
-evidence: REPLACE
-limitation: REPLACE
-recommendation: REPLACE
+priority_harm: >-
+  Falso negativo: un caso con riesgo real (target = 1) queda abajo en la cola y su revisión técnica
+  se retrasa. Es el daño priorizado en LAB11 (R01). Un falso positivo consume capacidad de revisión,
+  pero no causa una intervención, porque la salida es solo un orden de cola.
+primary_metric: >-
+  Recall (TPR) por grupo protegido y la brecha de recall entre G1 y G2. La métrica secundaria es la
+  brecha de FPR (carga de revisión innecesaria). Accuracy no se usa como métrica principal, porque
+  el target está casi balanceado (55 % positivos) y oculta fallas por grupo.
+tolerance: >-
+  Recall global y de cada grupo de al menos 0.68; brecha de recall y de FPR de máximo 0.16
+  (configs/governance.yml). Solo se interpretan las intersecciones con 20 o más casos y 10 o más
+  positivos (reports/lab12/support_policy.json).
+evidence: >-
+  Test temporal (n = 160, desde 2026-09-25). La regresión logística tiene recall global 0.717,
+  brecha de recall 0.138 (IC95 bootstrap 0.009 a 0.322) y brecha de FPR 0.125, y pasa las puertas
+  automáticas. Pero el recall de G1 es 0.653, por debajo de 0.68, y en G1 de 30-44 y de 45-59 es
+  de 0.56 y 0.59. El árbol tiene el mismo recall global (0.717) y no pasa las brechas (recall 0.181,
+  FPR 0.168); además pesa más del doble (7.9 KB frente a 3.6 KB). La regla no predictiva tiene
+  recall 0.837, pero FPR 0.544 y selecciona el 71 % de los casos. Fuentes:
+  reports/lab12/model_comparison.csv, logistic/ y tree/.
+limitation: >-
+  El test es pequeño (G2 = 59 casos) y los intervalos de las brechas son amplios: no se puede
+  descartar una brecha mayor a 0.16. Cuatro intersecciones no tienen soporte suficiente. Los datos
+  son sintéticos y zone o infrastructure_score pueden funcionar como proxies del grupo. Una brecha
+  observada es una señal para investigar, no una prueba de discriminación causal.
+recommendation: >-
+  LIMITAR. No desplegar el árbol. La regresión logística (la opción suficiente y más liviana) solo
+  puede ir a un piloto en modo sombra junto a la regla no predictiva, que sigue ordenando la cola.
+  Cada caso lo revisa un humano y se sigue mensualmente el recall de G1 y de sus intersecciones.
+  Para pasar a GO, el recall de G1 debe ser de al menos 0.68 con más datos o un ajuste de umbral
+  validado. Lo decide el Product Owner.

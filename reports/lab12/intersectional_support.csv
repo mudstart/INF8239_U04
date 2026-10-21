@@ -1,0 +1,9 @@
+,count,positives,interpretable
+G1 | 18-29,18,4,False
+G1 | 30-44,24,16,True
+G1 | 45-59,35,17,True
+G1 | 60+,24,12,True
+G2 | 18-29,11,8,False
+G2 | 30-44,14,12,False
+G2 | 45-59,8,6,False
+G2 | 60+,26,17,True

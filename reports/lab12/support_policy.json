@@ -1,0 +1,6 @@
+{
+  "min_group_n": 20,
+  "min_positives_for_recall": 10,
+  "bootstrap_resamples": 1000,
+  "seed": 42
+}

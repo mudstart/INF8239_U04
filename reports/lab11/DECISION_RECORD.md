@@ -19,7 +19,7 @@ El sistema solo **ordena la cola semanal de revisión técnica**. No decide inte
 | 2 | R02 · Sesgo de automatización: los analistas aceptan el orden sin revisarlo | 9 (3×3) | Product Owner | medio |
 | 3 | R04 · Deriva temporal que degrada el recall sin que nadie lo detecte | 9 (3×3) | ML Engineer | medio |
 
-**R01 (crítico).** Es el único riesgo con residual alto. Quitar `protected_group` y `age_band` de las features no garantiza equidad, porque `zone` e `infrastructure_score` pueden funcionar como proxies (lo trata R06). El control real son las puertas `max_recall_gap ≤ 0.16` y `max_fpr_gap ≤ 0.16`, y **todavía no hay evidencia medida**: `rmf_summary.json` marca MEASURE como *LAB12 pending*. Que exista el archivo de configuración no prueba que el control funcione.
+**R01 (crítico).** Es el único riesgo con residual alto. Quitar `protected_group` de las features no garantiza equidad (y `age_band`, que también se declaró sensible, sí entra al modelo), porque `zone` e `infrastructure_score` pueden funcionar como proxies (lo trata R06). El control real son las puertas `max_recall_gap ≤ 0.16` y `max_fpr_gap ≤ 0.16`, y **todavía no hay evidencia medida**: `rmf_summary.json` marca MEASURE como *LAB12 pending*. Que exista el archivo de configuración no prueba que el control funcione.
 
 **R02.** Un sistema de apoyo deja de serlo si el operador no ejerce su juicio. Los controles son la justificación obligatoria al reordenar y el muestreo mensual. Su eficacia depende de la capacitación y no se ha medido.
 
