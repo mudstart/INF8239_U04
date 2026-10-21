@@ -1,5 +1,10 @@
 activity,R,A,C,I
 Data quality,Data Engineer,Product Owner,Data Scientist,Affected representatives
 Model validation,Data Scientist,Product Owner,Data Engineer,Affected representatives
+Fairness audit,Data Scientist,Product Owner,Affected representatives,Institutional Owner
 Deployment,ML Engineer,Product Owner,Data Scientist,Users
+Monitoring and drift,ML Engineer,Product Owner,Data Scientist,Users
+Appeal review,Independent Reviewer,Product Owner,Data Scientist,Affected representatives
 Incident response,ML Engineer,Institutional Owner,Legal and Data Scientist,Affected representatives
+Rollback to safe baseline,ML Engineer,Product Owner,Data Scientist,Users and Affected representatives
+External communication,Product Owner,Institutional Owner,Legal,Affected representatives

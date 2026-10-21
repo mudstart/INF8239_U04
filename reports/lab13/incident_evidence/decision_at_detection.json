@@ -1,0 +1,67 @@
+{
+  "status": "REVIEW",
+  "failed": [
+    "group_recall"
+  ],
+  "checks": {
+    "recall": true,
+    "recall_gap": true,
+    "fpr_gap": true,
+    "latency": true,
+    "model_size": true,
+    "group_recall": false
+  },
+  "version": {
+    "package": "0.1.0",
+    "model": "logistic",
+    "data_sha256": "2af1858fe874",
+    "config_sha256": "cf6784ba0066"
+  },
+  "policy": {
+    "system": "Territorial Review DSS - Synthetic",
+    "policy_version": "2026-10-21",
+    "gates": {
+      "min_recall": 0.68,
+      "min_group_recall": 0.68,
+      "max_recall_gap": 0.16,
+      "max_fpr_gap": 0.16,
+      "max_latency_ms": 500,
+      "max_model_kb": 1024
+    },
+    "prohibited_uses": [
+      "automatic intervention",
+      "eligibility decision",
+      "emergency declaration"
+    ],
+    "safe_baseline": "FIFO, moving up cases with previous_incidents >= 3 or exposure > 0.7"
+  },
+  "evidence": {
+    "metrics": {
+      "accuracy": 0.71875,
+      "recall": 0.717391304347826,
+      "min_group_recall": 0.6530612244897959
+    },
+    "gaps": {
+      "recall_gap": 0.13763644992880875,
+      "fpr_gap": 0.125
+    },
+    "resources": {
+      "training_seconds": 0.036666200001491234,
+      "model_kb": 3.5634765625,
+      "latency_ms": 0.0214118749681802
+    },
+    "by_group": {
+      "G1": {
+        "count": 101.0,
+        "recall": 0.653,
+        "fpr": 0.25
+      },
+      "G2": {
+        "count": 59.0,
+        "recall": 0.791,
+        "fpr": 0.375
+      }
+    }
+  },
+  "human_action": "REVIEW: the Product Owner must analyse the evidence and record the final decision; the DSS only orders the review queue."
+}

@@ -1,4 +1,5 @@
 system_name: Territorial Review DSS - Synthetic
+policy_version: "2026-10-21"
 purpose: Prioritize synthetic cases for human review
 prohibited_uses:
   - automatic intervention
@@ -6,8 +7,10 @@ prohibited_uses:
   - emergency declaration
 sensitive_features: [protected_group, age_band]
 direct_identifiers: [name, document_number, email, phone]
+safe_baseline: "FIFO, moving up cases with previous_incidents >= 3 or exposure > 0.7"
 gates:
   min_recall: 0.68
+  min_group_recall: 0.68
   max_recall_gap: 0.16
   max_fpr_gap: 0.16
   max_latency_ms: 500
