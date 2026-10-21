@@ -1,0 +1,40 @@
+purpose: >-
+  Ordenar casos territoriales sintéticos (riesgo de infraestructura y exposición por zona)
+  para que el equipo técnico decida cuáles revisar primero con su capacidad limitada.
+  Busca reducir el tiempo hasta revisar los casos con incidentes previos y alta exposición,
+  sin reemplazar el juicio del analista.
+assisted_decision: >-
+  Orden de la cola semanal de revisión técnica de campo: qué casos ve primero el analista.
+  La recomendación es solo un puntaje y un orden; no decide intervención, elegibilidad
+  ni asignación de recursos.
+users: >-
+  Analistas técnicos de revisión territorial (operadores) y su coordinador de unidad,
+  que recibe el resumen semanal. Hay que capacitarlos en las limitaciones del modelo.
+affected_population: >-
+  Residentes y comunidades de las zonas Norte, Sur, Este y Oeste cuyos casos entran en la cola,
+  incluidos los grupos protegidos G1 y G2 y todas las franjas de edad (la de 60+ es especialmente
+  sensible). Los afectados indirectos son los casos que bajan de prioridad y esperan más.
+owner: >-
+  Product Owner del DSS territorial (rol institucional responsable). Rinde cuentas ante el
+  Institutional Owner y es quien firma las decisiones GO, REVIEW o STOP y el retiro del sistema.
+non_predictive_alternative: >-
+  Cola por reglas transparentes y auditables: primero orden de llegada (FIFO), y adelantar
+  los casos con 3 o más incidentes previos o exposición mayor a 0.7, revisados por un analista.
+  Esta es la línea base contra la que el modelo debe mostrar beneficio. Si no lo muestra,
+  se usa la regla.
+out_of_scope_use: >-
+  Prohibido: intervención automática, decisión de elegibilidad o de acceso a beneficios,
+  declarar emergencias, perfilar a personas u hogares, usar grupo protegido o edad para
+  priorizar, y aplicar el sistema a poblaciones reales o a estadísticas oficiales
+  (los datos son sintéticos y didácticos).
+withdrawal_condition: >-
+  Se retira el modelo y se vuelve a la regla no predictiva si ocurre cualquiera de estas condiciones:
+  recall menor a 0.68; diferencia de recall o de FPR entre grupos mayor a 0.16;
+  latencia mayor a 500 ms; un incidente de uso fuera de alcance; o que en el piloto
+  el modelo no mejore la línea base FIFO más reglas. Decide el Product Owner en un plazo
+  máximo de 48 horas y lo registra en el runbook.
+appeal_mechanism: >-
+  Cualquier persona afectada, o un analista, puede pedir que se revise la prioridad de un caso
+  mediante un formulario a la coordinación técnica. Un revisor humano que no generó la
+  recomendación responde en 5 días hábiles. Se registran el motivo, la decisión y si el
+  modelo se equivocó. Las apelaciones aceptadas alimentan la auditoría del LAB12.
