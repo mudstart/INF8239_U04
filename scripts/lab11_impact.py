@@ -7,6 +7,6 @@ impact=yaml.safe_load(Path("student_inputs/lab11_impact.yml").read_text(encoding
 stake=pd.read_csv("student_inputs/stakeholders.csv")
 if stake.astype(str).apply(lambda s:s.str.contains("REPLACE")).any().any(): raise ValueError("Complete stakeholders.csv")
 risks=score_risks(pd.read_csv("student_inputs/risk_register.csv")); risks.to_csv(out/"risk_register_scored.csv",index=False); stake.to_csv(out/"stakeholders.csv",index=False)
-(out/"rmf_summary.json").write_text(json.dumps({"GOVERN":"owner and policy","MAP":f"{len(risks)} documented risks","MEASURE":"LAB12 pending","MANAGE":"withdrawal and appeal documented"},indent=2),encoding="utf-8")
+(out/"rmf_summary.json").write_text(json.dumps({"GOVERN":"owner and policy","MAP":f"{len(risks)} documented risks","MEASURE":"global, group and intersectional audit in reports/lab12/AUDIT_REPORT.md" if Path("reports/lab12/AUDIT_REPORT.md").exists() else "LAB12 pending","MANAGE":"withdrawal and appeal documented"},indent=2),encoding="utf-8")
 if not (out/"DECISION_RECORD.md").exists(): (out/"DECISION_RECORD.md").write_text("# Decision record\n\nREPLACE with evidence, uncertainty, owner and GO/REVIEW/STOP.\n",encoding="utf-8")
 print(risks[["id","priority","owner"]].head(3).to_string(index=False))

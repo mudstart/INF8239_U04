@@ -61,3 +61,14 @@ Un analista revisa cada caso. Cualquier persona afectada o un analista puede ape
 ## 7. Marco de referencia
 
 NIST AI RMF 1.0 (GOVERN, MAP, MEASURE, MANAGE), DOI 10.6028/NIST.AI.100-1; OECD Recommendation on AI, DOI 10.1787/cc2e1d3e-en.
+
+## 8. Adenda (después del LAB12): decisión final
+
+La decisión **REVISAR** de este registro se tomó sin métricas. La auditoría del LAB12 (`reports/lab12/AUDIT_REPORT.md`) aportó esa evidencia, y la decisión final pasa a **LIMITAR**:
+
+- **Desplegar: no.** El recall de G1 es 0.653, por debajo de 0.68, y el IC95 de la brecha de recall (0.009 a 0.322) supera la tolerancia de 0.16. El GO automático de `deployment_decision` no se acepta porque solo mira el recall global.
+- **Modificar: es la condición para avanzar.** Ajustar el umbral por grupo o conseguir más datos, validado antes de cualquier GO.
+- **Limitar: sí.** La regresión logística pasa a un piloto en modo sombra junto a la regla no predictiva, que sigue ordenando la cola. Un analista revisa cada caso y se monitorea cada mes el recall de G1 · 30-44 y G1 · 45-59.
+- **No utilizar: no por ahora.** Es razonable si se prioriza el recall de G1, porque la regla lo cubre mejor (0.898). Se reevalúa al terminar el piloto.
+
+**Responsable:** Product Owner. La condición de retiro de la sección 5 sigue vigente.
