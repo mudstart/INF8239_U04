@@ -9,4 +9,5 @@
   - `reports/lab11/DECISION_RECORD.md`: análisis de los tres riesgos con mayor prioridad y la recomendación de revisar (REVIEW).
   - `scripts/lab11_impact.py`: ajuste técnico para que el script se pudiera ejecutar.
 - **Fallas encontradas y cómo se resolvieron:** el script `scripts/lab11_impact.py` no se podía ejecutar (`SyntaxError`), porque un texto entre comillas tenía saltos de línea escritos directamente. Se cambiaron por la secuencia `\n` y se añadió una validación para que el script no reemplace `DECISION_RECORD.md` cuando ese archivo ya existe.
+- **Revisión humana:** leí con calma todo lo que generó la IA y lo fui contrastando con el caso y con lo que vimos en la unidad. Revisé que el propósito y los actores tuvieran sentido, y que cada riesgo fuera concreto y tuviera un responsable y una evidencia que se pudieran verificar. También ejecuté el script y las pruebas para confirmar que todo funcionaba. La recomendación de REVISAR la hago mía: sin las métricas por grupo del LAB12 no me parece responsable desplegar el sistema todavía.
 
