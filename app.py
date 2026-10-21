@@ -2,9 +2,10 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 import yaml
-from inf8239_u04.data import load_data
+from inf8239_u04.data import load_data,temporal_split
 from inf8239_u04.dss import prioritized_queue
 from inf8239_u04.governance import load_config,traceable_record
+from inf8239_u04.monitoring import drift_report
 from inf8239_u04.pipeline import run
 st.set_page_config(page_title="Governed Green DSS",layout="wide")
 st.title("DSS territorial sintético · Gobernanza y Green AI")
@@ -29,6 +30,13 @@ if comparison.exists(): st.subheader("Alternativas y Green AI (LAB12)"); st.data
 st.subheader("Recomendación trazable"); st.json({k:record[k] for k in ["status","version","policy","human_action"]})
 decision=Path("student_inputs/lab12_decision.yml")
 if decision.exists(): st.subheader("Decisión humana registrada"); st.write(yaml.safe_load(decision.read_text(encoding="utf-8"))["recommendation"])
+st.subheader("Monitoreo de deriva (PSI)")
+reference,current=temporal_split(load_data()); drift=drift_report(reference,current,cfg["monitoring"])
+st.caption(f"Referencia: ventana de entrenamiento · actual: ventana de prueba · frecuencia {cfg['monitoring']['frequency']} · aviso ≥ {cfg['monitoring']['psi_warn']}, alerta ≥ {cfg['monitoring']['psi_alert']}.")
+st.dataframe(drift.rename(columns={"variable":"variable","psi":"PSI","status":"estado"}),hide_index=True)
+if (drift.status=="ALERT").any(): st.error("Deriva en: "+", ".join(drift[drift.status=="ALERT"].variable)+". Escalar según el runbook.")
+elif record["failed"]: st.success("Sin alertas de deriva de datos. La alerta activa viene de las puertas de calidad.")
+else: st.success("Sin alertas de deriva ni de puertas.")
 postmortem=Path("reports/lab13/INCIDENT_POSTMORTEM.md")
 if postmortem.exists():
     text=postmortem.read_text(encoding="utf-8"); field=lambda name:next((l.split(":**",1)[1].strip() for l in text.splitlines() if l.startswith(f"- **{name}:**")),"—")

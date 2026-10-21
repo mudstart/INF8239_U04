@@ -2,9 +2,9 @@
 
 Los roles salen de `student_inputs/raci.csv`. El simulacro se ejecuta con `uv run python scripts/simulate_incident.py`, y su resultado está en `reports/lab13/INCIDENT_POSTMORTEM.md`.
 
-1. **Detection and classification:** la detección es automática y se apoya en las puertas de `configs/governance.yml`, que se evalúan con `scripts/lab13_governance.py` cada mes y antes de cada cambio de modelo o de datos. Cualquier puerta fallida produce REVIEW. Cada señal se clasifica así:
+1. **Detection and classification:** la detección es automática y se apoya en las puertas de `configs/governance.yml`, que se evalúan con `scripts/lab13_governance.py`, y en el monitoreo mensual de deriva con `scripts/monitor.py` (ver `docs/MONITORING_PLAN.md`), cada mes y antes de cada cambio de modelo o de datos. Cualquier puerta fallida produce REVIEW. Cada señal se clasifica así:
    - **Equidad** (`group_recall`, `recall_gap`, `fpr_gap`): severidad alta.
-   - **Desempeño o deriva** (`recall`): severidad alta.
+   - **Desempeño o deriva** (`recall`, o un PSI de 0.25 o más en `monitor.py`): severidad alta.
    - **Costo** (`latency`, `model_size`): severidad media.
    - **Privacidad** (`validate_schema` rechaza identificadores directos): **STOP inmediato**.
    - **Uso fuera de alcance:** **STOP inmediato**.

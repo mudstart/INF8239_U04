@@ -1,0 +1,63 @@
+{
+  "generated_at": "2026-10-21T20:48:28.757693+00:00",
+  "policy_version": "2026-10-21",
+  "version": {
+    "package": "0.1.0",
+    "model": "logistic",
+    "data_sha256": "2af1858fe874",
+    "config_sha256": "4e9fd0c25065"
+  },
+  "reference_window": "2026-01-01 to 2026-09-24",
+  "current_window": "2026-09-25 to 2026-12-27",
+  "drift": [
+    {
+      "variable": "previous_incidents",
+      "psi": 0.0836,
+      "status": "OK"
+    },
+    {
+      "variable": "infrastructure_score",
+      "psi": 0.0667,
+      "status": "OK"
+    },
+    {
+      "variable": "exposure",
+      "psi": 0.0309,
+      "status": "OK"
+    },
+    {
+      "variable": "zone",
+      "psi": 0.0154,
+      "status": "OK"
+    },
+    {
+      "variable": "age_band",
+      "psi": 0.0381,
+      "status": "OK"
+    },
+    {
+      "variable": "protected_group",
+      "psi": 0.0012,
+      "status": "OK"
+    },
+    {
+      "variable": "target",
+      "psi": 0.0,
+      "status": "OK"
+    }
+  ],
+  "gates": {
+    "recall": true,
+    "recall_gap": true,
+    "fpr_gap": true,
+    "latency": true,
+    "model_size": true,
+    "group_recall": false
+  },
+  "status": "REVIEW",
+  "alerts": [
+    "gate:group_recall"
+  ],
+  "escalate_to": "Product Owner",
+  "next_action": "Open the runbook (docs/RUNBOOK.md) and record the response"
+}

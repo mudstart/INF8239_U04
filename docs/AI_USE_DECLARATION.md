@@ -48,6 +48,14 @@
 - `docs/MODEL_CARD.md`, `docs/RUNBOOK.md` y `docs/DATASET_CARD.md`: redacción con la evidencia de los LAB11 y LAB12.
 - `tests/`: ocho pruebas nuevas (RACI, puerta por grupo, trazabilidad, columna faltante y cola priorizada).
 
+**E08**
+- `docs/DATA_INVENTORY.md`: inventario de activos, minimización por columna y propuesta de plazos de retención (los plazos son una propuesta que el estudiante debe confirmar).
+- `scripts/e08_minimization.py`: compara el modelo con y sin `age_band` y con y sin `zone`; genera `reports/e08/minimization.csv`.
+- `docs/DATASET_CARD.md`: reestructurada en formato datasheet, con rangos y conteos verificados en los datos.
+- `docs/HANDOFF.md`: siete traspasos entre roles, con criterios de aceptación verificables.
+- `src/inf8239_u04/monitoring.py`, `scripts/monitor.py` y `docs/MONITORING_PLAN.md`: monitoreo de deriva con PSI y escalamiento; la sección se muestra en el tablero y tiene tres pruebas nuevas.
+- `docs/NORMATIVE_ANALYSIS.md`: sección «Aplicación a la gobernanza (E08)».
+
 Las métricas no las escribió la IA: salen de ejecutar `scripts/lab12_audit.py` y `scripts/lab12_compare.py`, y se pueden reproducir con la semilla 42.
 
 ## Fallas encontradas y cómo se resolvieron
@@ -59,6 +67,7 @@ Las métricas no las escribió la IA: salen de ejecutar `scripts/lab12_audit.py`
 5. **Error del script de simulacro:** `scripts/simulate_incident.py` tenía el mismo `SyntaxError` que el script del LAB11. Se reescribió para que el simulacro use la señal real de las puertas y no deje campos en `REPLACE`.
 6. **Puerta corregida en el LAB13:** la falla 3 se resolvió en el código. La nueva puerta `group_recall` hace que el pipeline devuelva REVIEW, como exige el laboratorio («una puerta fallida debe producir REVIEW o STOP, nunca ocultarse»).
 7. **Error de la IA:** en el primer borrador de la Dataset Card, la IA escribió «un caso por día». Al verificarlo en los datos resultó falso: hay 324 fechas distintas entre el 2026-01-01 y el 2026-12-27. Se corrigió.
+8. **Hallazgo de minimización:** al medir el modelo sin `age_band`, el recall global y el de cada grupo no cambiaron, y el FPR bajó de 0.279 a 0.265. La IA propuso retirar la variable; el cambio **no se aplicó** para no alterar la evidencia entregada, y queda como decisión del Product Owner.
 
 ## Revisión humana
 

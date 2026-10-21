@@ -54,6 +54,21 @@ Ni la ley ni los marcos exigen estas decisiones. Las tomé yo y tengo que poder 
 | Marco voluntario | No, se adopta | Funciones del NIST AI RMF; principios de la OECD |
 | Recomendación ética | No, se justifica | Umbrales de 0.16 y 0.68 por grupo; regla base; LIMITAR |
 
+## Aplicación a la gobernanza (E08)
+
+Los mismos tres niveles, aplicados al inventario, la minimización, la retención, el RACI y el monitoreo del LAB13:
+
+| Tema | Obligación legal | Marco voluntario | Recomendación ética (criterio propio) |
+|---|---|---|---|
+| **Inventario y minimización** | Ley 172-13: los datos tratados deben ser adecuados, pertinentes y no excesivos para la finalidad *(verificar la redacción exacta en la ley)*. Con datos sintéticos no aplica, pero aplicaría en un despliegue real | *Datasheets for Datasets* (Gebru et al.); NIST AI RMF, función MAP | Retirar `age_band` del modelo porque no aporta utilidad (`docs/DATA_INVENTORY.md`, sección 3) |
+| **Retención y eliminación** | Ley 172-13: conservar los datos solo mientras lo exija la finalidad *(verificar)*. Hábeas data (Constitución, art. 70) | NIST AI RMF, función MANAGE | Plazos propuestos: 12 meses para apelaciones y evidencia de incidentes, y 2 años para reportes de auditoría |
+| **Seguridad y acceso** | Ley 172-13: deber de seguridad y confidencialidad *(verificar)* | Buenas prácticas de control de acceso | `protected_group` con acceso restringido y fuera de la cola; secretos fuera del repositorio |
+| **Responsabilidades (RACI y traspaso)** | No hay una norma dominicana que exija un RACI para la IA | NIST AI RMF, función GOVERN (roles y responsabilidades) | Un solo Accountable por actividad; criterios de aceptación verificables en cada traspaso (`docs/HANDOFF.md`) |
+| **Documentación del modelo** | No es exigible hoy (no hay una ley de IA vigente) | *Model Cards* (Mitchell et al.) | Versión y hashes en la Model Card y en la decisión trazable |
+| **Monitoreo e incidentes** | Notificar incidentes de datos personales solo aplicaría con datos reales *(verificar en la reforma de la Ley 172-13)* | NIST AI RMF, funciones MEASURE y MANAGE | Umbrales de PSI de 0.10 y 0.25 (convención de la industria), revisión mensual, simulacro con postmortem en 10 días hábiles |
+
+La decisión final no cambia: sigue siendo **LIMITAR**. El monitoreo no detecta deriva de datos, pero la puerta `group_recall` sigue fallando (el recall de G1 es 0.653), así que el modelo se mantiene en modo sombra.
+
 ## Fuentes consultadas sobre el estado regulatorio (verificar en fuentes oficiales)
 
 - Diego Ceredi, «¿Hay ley de IA en República Dominicana? Estado de la regulación en 2026»: https://www.diegoceredi.com/blog/regulacion-ia-republica-dominicana-2026

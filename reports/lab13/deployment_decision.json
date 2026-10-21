@@ -15,7 +15,7 @@
     "package": "0.1.0",
     "model": "logistic",
     "data_sha256": "2af1858fe874",
-    "config_sha256": "cf6784ba0066"
+    "config_sha256": "4e9fd0c25065"
   },
   "policy": {
     "system": "Territorial Review DSS - Synthetic",
@@ -46,9 +46,9 @@
       "fpr_gap": 0.125
     },
     "resources": {
-      "training_seconds": 0.03838150000956375,
+      "training_seconds": 0.03637929999968037,
       "model_kb": 3.5634765625,
-      "latency_ms": 0.02102249991366989
+      "latency_ms": 0.018173124954046216
     },
     "by_group": {
       "G1": {

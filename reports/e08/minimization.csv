@@ -1,0 +1,4 @@
+variant,features,recall,fpr,recall_G1,recall_G2,recall_gap,fpr_gap
+current (zone + age_band),5,0.717,0.279,0.653,0.791,0.138,0.125
+without age_band,4,0.717,0.265,0.653,0.791,0.138,0.144
+without zone and age_band,3,0.728,0.25,0.653,0.814,0.161,0.245

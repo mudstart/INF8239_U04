@@ -1,0 +1,8 @@
+variable,psi,status
+previous_incidents,0.0836,OK
+infrastructure_score,0.0667,OK
+exposure,0.0309,OK
+zone,0.0154,OK
+age_band,0.0381,OK
+protected_group,0.0012,OK
+target,0.0,OK
